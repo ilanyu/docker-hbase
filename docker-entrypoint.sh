@@ -32,9 +32,10 @@ if [ -z "$HBASE_HOME" ]; then
 	source /etc/profile.d/hbase.sh
 fi
 
-ssh localhost && exit
-
-start-dfs.sh
-start-hbase.sh
+if [ ! -f /tmp/hadoop-root-namenode.pid ]; then
+	hdfs namenode -format
+	start-dfs.sh
+	start-hbase.sh
+fi
 
 exec "$@"
