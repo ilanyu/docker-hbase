@@ -5,6 +5,7 @@ if [ ! -f ~/.ssh/authorized_keys ]; then
 	cd ~/.ssh/ && \
 	ssh-keygen -t rsa
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+	cd ~
 fi
 
 /etc/init.d/ssh start
