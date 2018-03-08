@@ -26,6 +26,9 @@ COPY hbase/hbase-site.xml /usr/local/hbase-1.2.6/conf/hbase-site.xml
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
+RUN chmod a+x /usr/local/hbase-1.2.6/conf/hbase-env.sh && \
+    chmod a+x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 37813 50070 50010 9000 50090 50075 50020
