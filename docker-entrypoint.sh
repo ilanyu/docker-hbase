@@ -9,8 +9,6 @@ fi
 
 /etc/init.d/ssh start
 
-ssh localhost && exit
-
 if [ -z "$JAVA_HOME" ]; then
 	echo 'export JAVA_HOME=/usr/local/jdk1.8.0_161' > /etc/profile.d/java.sh
 	echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /etc/profile.d/java.sh
@@ -18,7 +16,7 @@ if [ -z "$JAVA_HOME" ]; then
 fi
 
 if [ -z "$HADOOP_HOME" ]; then
-	echo 'export HADOOP_HOME=/usr/local/hadoop-2.7.4 >' /etc/profile.d/hadoop.sh
+	echo 'export HADOOP_HOME=/usr/local/hadoop-2.7.4' > /etc/profile.d/hadoop.sh
 	echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin' >> /etc/profile.d/hadoop.sh
 	source /etc/profile.d/hadoop.sh
 fi
@@ -33,6 +31,8 @@ if [ -z "$HBASE_HOME" ]; then
 	echo 'export PATH=$PATH:$HBASE_HOME/bin' >> /etc/profile.d/hbase.sh
 	source /etc/profile.d/hbase.sh
 fi
+
+ssh localhost && exit
 
 start-dfs.sh
 start-hbase.sh
