@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 
 if [ -z "$JAVA_HOME" ]; then
 	export JAVA_HOME=/usr/local/jdk1.8.0_161
@@ -21,8 +21,8 @@ fi
 
 if [ ! -f ~/.ssh/authorized_keys ]; then
 	cd ~/.ssh/ && \
-	ssh-keygen -t rsa && \
-	cat ./id_rsa.pub >> ./authorized_keys && \
+	ssh-keygen -t rsa
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 fi
 
 ssh localhost
