@@ -20,12 +20,15 @@ if [ -z "$HBASE_HOME" ]; then
 fi
 
 if [ ! -f ~/.ssh/authorized_keys ]; then
+	mkdir ~/.ssh/ && \
 	cd ~/.ssh/ && \
 	ssh-keygen -t rsa
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 fi
 
-ssh localhost
+/etc/init.d/ssh start
+
+ssh localhost && exit
 
 start-dfs.sh
 start-hbase.sh
