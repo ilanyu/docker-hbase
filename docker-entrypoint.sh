@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [ ! -f ~/.ssh/authorized_keys ]; then
+	mkdir ~/.ssh/ && \
+	cd ~/.ssh/ && \
+	ssh-keygen -t rsa
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+fi
+
+/etc/init.d/ssh start
+
 if [ -z "$JAVA_HOME" ]; then
 	echo export JAVA_HOME=/usr/local/jdk1.8.0_161 > /etc/profile.d/java.sh
 	echo export PATH=$PATH:$JAVA_HOME/bin >> /etc/profile.d/java.sh
@@ -22,17 +31,6 @@ if [ -z "$HBASE_HOME" ]; then
 	echo export PATH=$PATH:$HBASE_HOME/bin >> /etc/profile.d/hbase.sh
 	source /etc/profile.d/hbase.sh
 fi
-
-if [ ! -f ~/.ssh/authorized_keys ]; then
-	mkdir ~/.ssh/ && \
-	cd ~/.ssh/ && \
-	ssh-keygen -t rsa
-	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-fi
-
-/etc/init.d/ssh start
-
-ssh localhost && exit
 
 start-dfs.sh
 start-hbase.sh
