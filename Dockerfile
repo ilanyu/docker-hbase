@@ -29,7 +29,7 @@ COPY hbase/hbase-site.xml /usr/local/hbase-1.2.6/conf/hbase-site.xml
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod a+x /usr/local/hbase-1.2.6/conf/hbase-env.sh && \
-RUN chmod a+x /usr/local/hadoop-2.7.4/etc/hadoop/hadoop-env.sh && \
+    chmod a+x /usr/local/hadoop-2.7.4/etc/hadoop/hadoop-env.sh && \
     chmod a+x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
