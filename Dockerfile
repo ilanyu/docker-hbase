@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 MAINTAINER ilanyu <lanyu19950316@gmail.com>
 
-RUN apt-get update && apt-get install -y wget vim tar bash ssh openssh-server lrzsz
+RUN apt-get update && apt-get install -y wget vim tar bash ssh openssh-server lrzsz net-tools
 
 RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" -N http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz && \
     tar -zxf jdk-8u161-linux-x64.tar.gz -C /usr/local/ && \
@@ -32,8 +32,10 @@ RUN chmod a+x /usr/local/hbase-1.2.6/conf/hbase-env.sh && \
     chmod a+x /usr/local/hadoop-2.7.4/etc/hadoop/hadoop-env.sh && \
     chmod a+x /entrypoint.sh
 
+RUN echo "0.0.0.0" > /usr/local/hbase-1.2.6/conf/regionservers
+
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 37813 50070 50010 9000 50090 50075 50020
+EXPOSE 9000 50090 50070 50010 50075 50020 40316 50020 16010 16020 16030 16000 2181
 
 CMD ["bash"]

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+hostname hbase
+
 if [ ! -f ~/.ssh/authorized_keys ]; then
 	mkdir ~/.ssh/ && \
 	cd ~/.ssh/ && \
